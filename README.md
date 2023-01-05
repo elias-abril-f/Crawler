@@ -1,10 +1,10 @@
-###Crawler (Still trying to think of a cool name)
+### Crawler (Still trying to think of a cool name)
 ---
-#OVERVIEW
+# OVERVIEW
 	This is a proof of concept project with Django and Scrapy. A real state aggregator including some of the most popular websites in the UK: Zoopla, RightMove and OpenRent *(at the time, more might be added)*. 
 	For now, it allows you to search for renting properties in certain postcodes in London. Eventually it'll allow to search anywhere in the UK, but it'll take me some time to reverse engineer the RightMove location codes, as they don't use the search term in their URL.  
 
-#HOW IT WORKS
+# HOW IT WORKS
 	The landing page is as basic as they come. Just a fixed top bar with your search options: Area/Postcode, maximum and minimum amount of beds and price and lastly the radius of search from your original area. 
 
 	Your search terms are part of a django form, once you submit them, since scrapy is integrated with Django as another app, this search terms are used as arguments that are passed to the spiders, one per website, and they scrape the different websites and collect the data from all the listings that match your search terms. 
@@ -16,7 +16,7 @@
 	
 	Once loaded, that is all!! Feel free to scroll though all your new options, if you like any, click anywhere in the listing's card and it'll take you to the official listing. 
 	
-#FUTURE IMPROVEMENTS
+# FUTURE IMPROVEMENTS
 - **Website selector**: I will include a way to select from which website you want to get results. 
 - **User accounts**: Having a user account will allow you to save your liked listings and searches 
 - **Expansion**: Reverse engineer the RightMove area/postcode codes to allow the user to use any search term and search for properties anywhere in the UK.
