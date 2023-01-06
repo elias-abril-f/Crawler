@@ -1,0 +1,100 @@
+{% extends "main/layout.html" %}
+
+{% block body %}
+
+{% for listing in listings %}
+<div class="card m-auto mt-4" style="width: 70rem;">
+    <a href="{{listing.url}}">
+    <div class="d-flex flex-row"> 
+        <div>
+            <img src="{{listing.img}}" class="card-img-top" alt="listing image" style="max-width:400px; max-height:300px;">
+        </div>
+        <div>
+            <div class="card-body">
+                <h5 class="card-title">£{{listing.price}} PCM</h5>
+                <p class="card-text">Road / Area: {{listing.area}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Postcode:           {{listing.postcode}}</li>
+                <li class="list-group-item">Number of Bedrooms: {{listing.numberBedrooms}}</li>
+                <li class="list-group-item">Type of building:   {{listing.type}}</li>
+            </ul>
+        </div>
+    </div>
+    </a>
+  </div>
+  {%endfor%}
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+         <!--<script>
+            $.getJSON('./../../static/main/Yourdatafile.json', function(data) {
+                
+                `<div class="card text-center">
+                    <a href="#" class="">
+                        <div class="card-header">
+                            price
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"> area </h5>
+                            <p class="card-text">bedrooms, type and postcode</p>
+                        </div>
+                        <div class="card-footer text-muted"></div>
+                    </a>
+                  </div>`
+               for (let listing of data){
+                const price = document.createTextNode(listing.price);
+                const numberBedrooms = document.createTextNode(listing.numberBedrooms)
+                const type = document.createTextNode(listing.type);
+                const area = document.createTextNode(listing.area);
+                const postcode = document.createTextNode(listing.postcode);
+                const space = document.createTextNode(" ");
+                
+                
+                const div1 = document.createElement("div");
+                div1.classList.add("card");
+                div1.classList.add("text-center");
+                const div2 = document.createElement("div");
+                div2.classList.add("card-header");
+                const div3 = document.createElement("div");
+                div3.classList.add("card-body")
+                const div4 = document.createElement("div");
+                div4.classList.add("card-footer")
+                div4.classList.add("text-muted")
+                div5.document.createElement("div");
+
+                const h5 = document.createElement("h5");
+                h5.classList.add("card-title")
+                const p = document.createElement("p");
+                p.classList.add("card-text")
+                const a = document.createElement("a");
+                a.setAttribute("href", listing.url);
+                const img = document.createElement("img")
+                img.setAttribute("src", listing.img)
+                img.setAttribute("alt", "Thumbnail")
+                const h3 = document.createElement("h3");
+                
+                div1.appendChild(div2);
+                div2.appendChild(h3);
+                div1.appendChild(a);
+                a.appendChild(div3);
+                a.appendChild(div4);
+                div3.appendChild(h5);
+                div3.appendChild(p);
+                div3.appendChild(img);
+
+                h3.appendChild(price)
+                h5.appendChild(area)
+                p.appendChild(numberBedrooms)
+                p.appendChild(document.createTextNode(" bedroom "))
+                p.appendChild(type)
+                p.appendChild(space)
+                p.appendChild(postcode)
+
+                const element = document.getElementById("body");
+                element.appendChild(div1);
+               }
+            });
+        </script>-->
+
+        {% endblock %}

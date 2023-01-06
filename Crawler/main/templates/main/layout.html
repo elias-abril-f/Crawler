@@ -1,0 +1,193 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="application/javascript;charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <title>Crawler</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% static 'main/styles.css' %}" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    </head>
+    <body id="body">
+
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav d-flex justify-content-start text-light">
+        <form class="navbar-nav d-flex justify-content-start text-light" action="/scrape" method="POST">
+            {% csrf_token%}
+            <li class="nav-item mx-1 d-flex flex-row align-items-end justify-content-between" style="width:20%">
+                <label class="form-label ms-2" style="width: 35%">  Area: </label>
+                <input class="form-control w-75" style="margin-left: -2em;" list="browsers" name="area">
+                <datalist class="nav-item mx-2 d-flex" id="browsers">
+                    <option value="E1">
+                        <option value="Mile End">
+                        <option value="Stepney">
+                        <option value="Whitechapel">
+                        <option value="E2">
+                        <option value="Bethnal Green">
+                        <option value="Shoreditch">
+                        <option value="E3">
+                        <option value="Bow">
+                        <option value="Bromley-by-Bow">
+                        <option value="E4">
+                        <option value="Chingford">
+                        <option value="Highams Park">
+                        <option value="E5">
+                        <option value="Clapton">
+                        <option value="E6">
+                        <option value="East Ham">
+                        <option value="Beckton">
+                        <option value="E7">
+                        <option value="Forest Gate">
+                        <option value="Upton Park">
+                        <option value="E8">
+                        <option value="Hackney">
+                        <option value="Dalston">
+                        <option value="E9">
+                        <option value="Hackney">
+                        <option value="Homerton">
+                        <option value="E10">
+                        <option value="Leyton">
+                        <option value="E11">
+                        <option value="Leytonstone">
+                        <option value="E12">
+                        <option value="Manor Park">
+                        <option value="E13">
+                        <option value="Plaistow">
+                        <option value="E14">
+                        <option value="Isle of Dogs">
+                        <option value="Millwall">
+                        <option value="Poplar">
+                        <option value="E15">
+                        <option value="Stratford">
+                        <option value="West Ham">
+                        <option value="E16">
+                        <option value="Canning Town">
+                        <option value="North Woolwich">
+                        <option value="E17">
+                        <option value="Walthamstow">
+                        <option value="E18">
+                        <option value="South Woodford">
+                        <option value="E20">
+                        <option value="Olympic Park">
+                        <option value="Stratford">
+                        <option value="N1">
+                        <option value="Barnsbury">
+                        <option value="Canonbury">
+                        <option value="Islington">
+                        <option value="N2">
+                        <option value="East Finchley">
+                        <option value="N3">
+                        <option value="Finchley Central">
+                        <option value="N4">
+                        <option value="Finsbury Park">
+                        <option value="Manor House">
+                        <option value="N5">
+                        <option value="Highbury">
+                        <option value="N6">
+                        <option value="Highgate">
+                        <option value="N7">
+                        <option value="Holloway">
+                        <option value="N8">
+                        <option value="Crouch End">
+                        <option value="Hornsey">
+                        <option value="N9">
+                        <option value="Lower Edmonton">
+                        <option value="N10">
+                        <option value="Muswell Hill">
+                        <option value="N11">
+                        <option value="Friern Barnet">
+                        <option value="New Southgate">
+                        <option value="N12">
+                        <option value="North Finchley">
+                        <option value="Woodside Park">
+                        <option value="N13">
+                        <option value="Palmers Green">
+                        <option value="N14">
+                        <option value="Southgate">
+                        <option value="N15">
+                        <option value="Seven Sisters">
+                        <option value="N16">
+                        <option value="Stamford Hill">
+                        <option value="Stoke Newington">
+                        <option value="N17">
+                        <option value="Tottenham">
+                        <option value="N18">
+                        <option value="Upper Edmonton">
+                        <option value="N19">
+                        <option value="Archway">
+                        <option value="Tufnell Park">
+                        <option value="N20">
+                        <option value="Totteridge">
+                        <option value="Whetstone">
+                        <option value="N21">
+                        <option value="Winchmore Hill">
+                        <option value="N22">
+                        <option value="Alexandra Palace">
+            </li>
+            <li class="nav-item mx-1 me-4 d-flex flex-row align-items-end justify-content-between" style="width:12%">
+                <label class="form-label me-1 w-75">Min Beds:</label>
+                <input type="number" class="form-control w-50" min="1" max="10" name="min_beds">
+            </li>
+            <li class="nav-item mx-1 me-4 d-flex flex-row align-items-end justify-content-between" style="width:12%">
+                <label class="form-label me-1 w-75">Max Beds:</label>
+                <input type="number" class="form-control w-50"min="1" max="10" name="max_beds" style="width: 35%">
+            </li>
+            <li class="nav-item mx-1 me-4 d-flex flex-row align-items-end justify-content-between" style="width:15%">
+                <label class="form-label me-1 w-75">Min Price:</label>
+                <input type="number" class="form-control w-75" min="100" max="10000" name="min_price" step="50">
+            </li>
+            <li class="nav-item mx-1 me-4 d-flex flex-row align-items-end justify-content-between" style="width:15%">
+                <label class="form-label me-1 w-75">Max Price:</label>
+                <input type="number" class="form-control w-75" min="100" max="10000" name="max_price" step="50">
+            </li>
+            <li class="nav-item mx-1 me-4 d-flex flex-row align-items-end justify-content-between" style="width:12%">
+                <label class="form-label w-75">Radius: </label>
+                <input type="number" class="form-control w-50" style="margin-left:-2em;" min="0" max="40" name="radius" step="0.25">
+            </li>
+            <li>
+                <button class="nav-item d-flex flex-row align-items-end justify-content-between mx-1 me-2 btn btn-outline-success" type="submit">Search</button>
+            </li>
+        </form>
+    </ul>
+  </div>
+</nav>
+        {% block body %}
+        {% endblock %}
+
+        <nav class="navbar sticky-bottom navbar-expand-lg navbar-dark bg-dark mx-auto" style="width: fit-content">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav d-flex align-items-center">
+                  <li class="nav-item" style="width: 100%;">
+                  {% if user.is_authenticated %}
+                    <a class="nav-link" href="logout"> Signed in as <strong>{{ user.username }}. Logout</strong>.
+                  {% else %}
+                    <a class="nav-link" href="login">Login</a>  
+                    <li class="nav-item">
+                      <a class="nav-link" href="register">Register</a>
+                    </li>
+                    {% endif %}
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </body>
+</html>
